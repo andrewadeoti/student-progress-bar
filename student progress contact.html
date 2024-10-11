@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Contact Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>School Contact Information</h1>
+    </header>
+    <div class="container">
+        <ul>
+            <li><strong>School Name:</strong> XYZ School</li>
+            <li><strong>Address:</strong> 123 School St, Anytown, USA</li>
+            <li><strong>Email:</strong> info@xyzschool.com</li>
+            <li><strong>Phone:</strong> (123) 456-7890</li>
+        </ul>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Contact Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .edit-button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        #backButton {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Contact Information</h1>
+    </header>
+    <div class="container">
+        <ul>
+            <li><strong>Name:</strong> <span id="studentName">John Doe</span></li>
+            <li><strong>Student ID:</strong> <span id="studentID">S123456</span></li>
+            <li><strong>Email:</strong> <span id="studentEmail">john.doe@example.com</span></li>
+            <li><strong>Phone:</strong> <span id="studentPhone">(123) 456-7890</span></li>
+            <li><strong>Address:</strong> <span id="studentAddress">123 Main St, Anytown, USA</span></li>
+        </ul>
+        <button class="edit-button" id="editButton">Edit</button>
+        <button id="backButton"><a href="ntu-progress-tracker-3bar.html">Back</a></button>
+    </div>
+
+    <script>
+        const editButton = document.getElementById("editButton");
+        const editableFields = ["studentName", "studentID", "studentEmail", "studentPhone", "studentAddress"];
+
+        editButton.addEventListener("click", () => {
+            editableFields.forEach((field) => {
+                const fieldElement = document.getElementById(field);
+                const inputElement = document.createElement("input");
+                inputElement.setAttribute("type", "text");
+                inputElement.setAttribute("id", `edit${field}`);
+                inputElement.value = fieldElement.textContent;
+                fieldElement.parentNode.replaceChild(inputElement, fieldElement);
+            });
+        });
+    </script>
+</body>
+</html>
+

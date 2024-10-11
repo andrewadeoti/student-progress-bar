@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* CSS for styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            color: #007BFF;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .attendance-list {
+            list-style: none;
+            padding: 0;
+        }
+        .attendance-list li {
+            margin: 10px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a class="back-button" href="ntu-progress-tracker-3bar.html">Back</a>
+    <h1>Student Attendance Tracker</h1>
+    <div class="container">
+        <ul class="attendance-list">
+            <li>
+                <label for="student1">Student 1:</label>
+                <input type="checkbox" id="student1">
+            </li>
+            <!-- Add more students as needed -->
+        </ul>
+        <canvas id="attendanceGraph" width="400" height="200"></canvas>
+    </div>
+
+    <script>
+        // JavaScript for handling attendance marking
+        const students = document.querySelectorAll('input[type="checkbox"]');
+        const canvas = document.getElementById('attendanceGraph');
+        const ctx = canvas.getContext('2d');
+        let attendancePercentage = 100; // Initial attendance at 100%
+
+        students.forEach((student, index) => {
+            student.addEventListener('change', () => {
+                const studentName = `Student ${index + 1}`;
+                if (student.checked) {
+                    attendancePercentage += 5; // Increase attendance when marked present
+                } else {
+                    attendancePercentage -= 5; // Decrease attendance when marked absent
+                }
+                attendancePercentage = Math.min(100, Math.max(0, attendancePercentage)); // Ensure attendance stays between 0 and 100
+                drawAttendanceGraph();
+                alert(`${studentName} is marked as ${student.checked ? 'Present' : 'Absent'}`);
+            });
+        });
+
+        function drawAttendanceGraph() {
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the attendance percentage text
+            ctx.font = '20px Arial';
+            ctx.fillStyle = '#007BFF';
+            ctx.fillText(`Attendance: ${attendancePercentage}%`, 10, 30);
+
+            // Draw the bar representing the attendance percentage
+            const barWidth = (attendancePercentage / 100) * (canvas.width - 20);
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(10, 40, barWidth, 20);
+        }
+
+        // Initial drawing
+        drawAttendanceGraph();
+    </script>
+</body>
+</html>
+
+
+
+
